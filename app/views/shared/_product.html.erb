@@ -1,0 +1,32 @@
+<li>
+  <%= link_to product do%>
+    <% if product.picture? %>
+      <%= image_tag product.picture.pathmap , size:"100x100"%>
+    <% else %>
+      <%= image_tag "no_image.png", size:"100x100" %>
+    <%end%>
+  <%end %>
+
+  <strong>
+    <%= t("shared.product.product_name") %>
+  </strong>
+  <%= product.name %>
+  <strong>
+    <%= t("shared.product.product_descri") %>
+  </strong>
+  <%= product.description %>
+  <strong>
+    <%= t("shared.product.product_price") %>
+  </strong>
+  <%= product.price %> $
+
+
+  <p>
+  <!-- Only Admin is allowed to modify products -->
+    <% if logged_in? %>
+      <%= link_to t("shared.product.product_edit"), edit_product_path(product) %>
+      or
+      <%= link_to t("shared.product.product_des"), product, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </p>
+</li>

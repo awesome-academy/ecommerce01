@@ -1,0 +1,74 @@
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading"><%= t("shared.cart.cart_mycart") %></h1>
+  </div>
+</section>
+
+<div class="container mb-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col"><%= t("shared.cart.cart_product") %></th>
+              <th scope="col"><%= t("shared.cart.cart_valibale") %></th>
+              <th scope="col" class="text-center"><%= t("shared.cart.cart_quantity") %></th>
+              <th scope="col" class="text-right"><%= t("shared.cart.cart_price") %></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @cart.order_items.each do |order_item| %>
+              <%= render "shared/cart_order_item" , :product => order_item.product , :order_item => order_item %>
+            <% end %>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><%= t("shared.cart.cart_sub") %></td>
+              <td class="text-right"><%= number_to_currency(@cart.sub_total) %></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><%= t("shared.cart.cart_pring") %></td>
+              <td class="text-right"><%= t("shared.cart.cart_pree") %></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <strong><%= t("shared.cart.cart_total") %></strong>
+              </td>
+              <td class="text-right">
+                <strong><%= number_to_currency(@cart.sub_total) %></strong>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col mb-2">
+      <div class="row">
+        <div class="col-sm-12  col-md-4">
+          <%= button_to "Continue Shopping", root_path , class: "btn btn-block btn-light" , method: :get%>
+        </div>
+        <% if(@current_cart.order_items.count !=0 ) %>
+          <div class="col-sm-12  col-md-4">
+            <%= button_to "Empty cart", cart_path(@current_cart),method: :delete, data: {confirm: "Are you sure?"} , class: "btn btn-lg btn-block btn-warning text-uppercase"%>
+          </div>
+          <div class="col-sm-12 col-md-4 text-right">
+            <%= button_to "Checkout", new_order_path , method: :get,class: "btn btn-lg btn-block btn-success text-uppercase"%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

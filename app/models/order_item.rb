@@ -1,4 +1,17 @@
 class OrderItem < ApplicationRecord
-  has_many :order, dependent: :destroy
-  has_many :product, dependent: :destroy
+  belongs_to :order, optional: true
+  belongs_to :product
+  belongs_to :cart
+
+  def total_price
+    if valid_quantity_and_price?
+      quantity.to_s.to_d * product.price.to_s.to_d
+    else
+      0.0
+    end
+  end
+
+  def valid_quantity_and_price?
+    !quantity.to_s.strip.empty? && !product.price.to_s.strip.empty?
+  end
 end

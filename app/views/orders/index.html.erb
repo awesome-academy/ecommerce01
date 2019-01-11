@@ -1,0 +1,16 @@
+<div class="center jumbotron">
+  <h2>
+    <% if params[:search].blank? %>
+        <%= t("orders.index.index_all") %> (<%= @current_user.orders.count %>)
+    <%else %>
+      <%= t("orders.index.index_f") %>
+      <%= pluralize(@orders.count, " ] Order") %>
+    <%end %>
+  </h2>
+</div>
+
+<% @orders.each do |order| %>
+    <% if order.user_id == @current_user.id %>
+      <%= render 'order' , :order => order%>
+    <%end%>
+  <% end %>

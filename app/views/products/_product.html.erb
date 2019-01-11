@@ -1,0 +1,81 @@
+<li>
+  <%= link_to product do%>
+    <% if product.picture? %>
+      <%= image_tag product.picture.pathmap %>
+    <% else %>
+      <%= image_tag "no_image.png" %>
+    <%end%>
+  <%end %>
+
+  <strong>
+    <%= t("products.product.product_name")%>
+  </strong>
+  <%= product.name %>
+  <strong>
+    <%= t("products.product.product_des")%>
+  </strong>
+  <%= product.description %>
+  <strong>
+    <%= t("products.product.product_price")%>
+  </strong>
+  <%= product.price %>
+  <%= t("products.product.product_info")%>
+  <p>
+
+  <%if !@current_cart.products.include?(product)%>
+    <%# if logged_in? %>
+      <!-- Add to Basket -->
+      <%=button_to order_items_path(:product_id => product.id), class: "btn btn-warning" , style: "margin-top:15px;" , params:{productID: product.id} do %>
+      <i class="glyphicon glyphicon-plus" id = "glyphicon"></i>
+      <%= t("products.product.product_add")%>
+    <% end %>
+    <%# end %>
+  <%else %>
+      <!-- See lineItem section below for explanation of line_item links -->
+
+      <!-- <li> -->
+      <!-- <%#= link_to "Add one", line_item_add_path(:id => line_item), method: :post %> -->
+
+      <!-- reduce -->
+    <%=link_to order_item_add_path(:id =>@current_cart.order_items.find_by(product_id: product.id)) , method: :post, class: "btn btn-danger" , style: "margin-top:15px;" do %>
+      <i class="glyphicon glyphicon-minus" ></i>
+      Reduce
+    <% end %>
+
+    <!-- add -->
+    <%=link_to order_item_add_path(:id => @current_cart.order_items.find_by(product_id: product.id)) , method: :post , class: "btn btn-success" , style: "margin-top:15px;" do %>
+    <i class="glyphicon glyphicon-plus"></i>
+    Add
+    <% end %>
+
+  <!-- Remove -->
+    <%=link_to order_item_path(@current_cart.order_items.find_by(product_id: product.id)) ,method: :delete ,class: "btn btn-warning" , style: "margin-top:15px;" do %>
+      <i class="glyphicon glyphicon-remove"></i>
+      <%= t("products.product.product_emove")%>
+    <% end %>
+    <li>
+      <%= t("products.product.product_quantity")%>
+      <%= @current_cart.order_items.find_by(product_id: product.id).quantity %>
+      <%= t("products.product.product_rice")%>
+      <%= number_to_currency(@current_cart.order_items.find_by(product_id: product.id).total_price) %>
+
+    </li>
+  <%end %>
+</p>
+
+<p>
+<!-- Only Admin is allowed to modify products -->
+<% if logged_in? %>
+  <%= link_to edit_product_path(product) do %>
+    <i class="#" style="color:darkgray"></i>
+    <%= t("products.product.product_edit")%>
+  <% end %>
+or
+<!-- Basket -->
+  <%= link_to product, method: :delete, data: { confirm: t("products.product.product_info2") } do %>
+    <i class="#" style="color:firebrick"></i>
+    <%= t("products.product.product_destroy")%>
+  <% end %>
+<% end %>
+</p>
+</li>

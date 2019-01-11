@@ -1,28 +1,168 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to t(".heard_info_heard"), root_path, id: "logo" %>
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to t(".heard_info_home"), root_path %></li>
-        <% if logged_in? %>
-          <li><%= link_to t(".heard_info_user"), "#" %></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <%= t(".heard_info_Account") %> <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to t(".heard_info_Profile"), current_user %></li>
-              <li><%= link_to t(".heard_info_Settings"), "#" %></li>
-              <li class="divider"></li>
-              <li>
-                <%= link_to t(".heard_info_logout"), logout_path, method: :delete %>
-              </li>
-            </ul>
-          </li>
-        <% else %>
-          <li><%= link_to t(".heard_info_login"), login_path %></li>
-        <% end %>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="nav-btn btn-dark btn-lg accordion-toggle pull-left collapsed" title="Follow Us" role="tab" id="social-collapse" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"></a>
+      <!-- <a id="menu-toggle" href="#" class="nav-btn btn-dark btn-lg toggle"> <i class="fa fa-bars" style="color:#fff;"></i> </a> -->
+      <a id="to-top" class="btn btn-lg btn-inverse" href="#top">
+        <span class="sr-only">Toggle to Top Navigation</span>
+        <i class="fa fa-chevron-up"></i>
+      </a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse js-navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-left">
+        <a class="navbar-brand" href="#">
+          <%= link_to t("layouts.header.heard_info_heard"), root_path, id: "logo" %>
+          <%= link_to image_tag("logo.png",size:"50x50" , alt: "Rails logo"), root_path %>
+        </a>
+        <!-- <li> <a href="#">Store locator</a> </li> -->
       </ul>
-    </nav>
+      <ul class="nav navbar-nav navbar-right">
+        <!-- Home -->
+        <li><%= link_to root_path do %>
+          <i class="glyphicon glyphicon-home"></i>
+          <%= t("layouts.header.heard_info_home")%>
+        <% end %>
+      </li>
+
+      <!-- Users -->
+      <% if logged_in? %>
+
+        <li><%= link_to users_path do %>
+          <i class="fa fa-users"></i>
+          <%= t("layouts.header.heard_info_user")%>
+          <span class="badge ">
+            <i id="total_cart_items_badge">(<%= User.count %>)</i>
+          </span>
+        <% end %>
+      </li>
+
+      <!-- Cart -->
+      <li><%= link_to cart_path(@current_cart) do %>
+        <%= t("layouts.header.heard_info_mycart")%>
+        <span class="badge ">
+          <i class="fa fa-cart-plus" id = "facart"></i>
+         <i id="total_cart_items_badge">(<%= @current_cart.order_items.count %>)</i>
+        </span>
+      <% end %>
+    </li>
+
+    <!-- Orders -->
+    <li><%= link_to orders_path do %>
+      <%= t("layouts.header.heard_info_order")%>
+      <span class="badge ">
+          <i class="fa fa-shopping-basket" id = "facart"></i>
+          <%= @current_user.orders.count %>
+      </span>
+    <% end %>
+  </li>
+
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <%= gravatar_for @current_user, size: 20 %>
+      <%= t("layouts.header.heard_info_Account")%>
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <div class="navbar-content">
+          <div class="row">
+            <div class="col-md-5">
+              <!-- <img src="http://placehold.it/120x120" alt="Alternate Text" class="img-responsive"/> -->
+              <%= gravatar_for @current_user, size: 120 %>
+              <p class="text-center small">
+                <%= link_to edit_user_path(current_user) do %>
+                <i class="glyphicon glyphicon-picture"></i>
+                <%= t("layouts.header.heard_info_cahngephoto")%>
+              <% end %>
+            </p>
+          </div>
+          <div class="col-md-7">
+            <span><%= @current_user.name %></span>
+            <p class="text-muted small">
+              <%= @current_user.email %></p>
+            <div class="divider"></div>
+            <%= link_to current_user , class: "btn btn-primary btn-sm active" do %>
+            <i class="glyphicon glyphicon-eye-open"></i>
+            <%= t("layouts.header.heard_info_Profile")%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="navbar-footer">
+      <div class="navbar-footer-content">
+        <div class="row">
+          <div class="col-md-6">
+            <%= link_to edit_user_path(current_user), class:"btn btn-default btn-sm" do %>
+            <i class="glyphicon glyphicon-cog"></i>
+            <%= t("layouts.header.heard_info_changepass")%>
+          <% end %>
+        </div>
+        <div class="col-md-6">
+          <%= link_to logout_path,class: "btn btn-default btn-sm pull-right", method: :delete do %>
+          <i class="glyphicon glyphicon-off"></i>
+          <%= t("layouts.header.heard_info_logout")%>
+        <% end %>
+      </div>
+    </div>
   </div>
-</header>
+</div>
+</li>
+</ul>
+</li>
+<% else %>
+
+<!-- Log In -->
+  <li><%= link_to login_path do %>
+    <i class="glyphicon glyphicon-log-out"></i>
+      <%= t("layouts.header.heard_info_login")%>
+  <% end %>
+  </li>
+
+<% end %>
+</ul>
+</ul></div><!-- /.nav-collapse --> </div> <!-- /.container-fluid --></nav><aside id="accordion" class="social text-vertical-center"> <div class="accordion-social"><ul class="panel-collapse nav nav-stacked collapse" role="tabpanel" aria-labelledby="social-collapse" id="collapseOne" aria-expanded="false">
+<li>
+  <a href="https://www.facebook.com/" target="_blank">
+    <i class="fa fa-lg fa-facebook"></i>
+  </a>
+</li>
+<li>
+  <a href="http://www.goxr3plus.co.nf" target="_blank">
+    <i class="fa fa-lg fa-twitter"></i>
+  </a>
+</li>
+<li>
+  <a href="http://www.goxr3plus.co.nf" target="_blank">
+    <i class="fa fa-lg fa-google-plus"></i>
+  </a>
+</li>
+<li>
+  <a href="http://www.goxr3plus.co.nf" target="_blank">
+    <i class="fa fa-lg fa-github"></i>
+  </a>
+</li>
+<li>
+  <a href="http://www.goxr3plus.co.nf" target="_blank">
+    <i class="fa fa-lg fa-linkedin"></i>
+  </a>
+</li>
+<li>
+<!-- <a href="skype:live:soldierupdesigns?call"> <i class="fa fa-lg fa-skype" target="_blank"></i> </a> -->
+</li>
+<li>
+  <a href="http://www.goxr3plus.co.nf" target="_blank">
+    <i class="fa fa-lg fa-stack-exchange"></i>
+  </a>
+</li>
+</ul>
+</div>
+</aside>

@@ -1,0 +1,31 @@
+<tr>
+  <td><%= link_to product do%>
+    <% if product.picture? %>
+      <%= image_tag product.picture.pathmap , size:"90x90"%>
+    <% else %>
+      <%= image_tag "no_image.png", size:"90x90" %>
+    <%end%>
+  <%end %>
+    <%= order_item.quantity %>
+  </td>
+  <td><%= product.name %></td>
+  <td><%= t("shared.cart_order_item.cart_order_item_store") %></td>
+  <td class="text-center" id = "stock">
+  <!-- giam san pham -->
+    <%=link_to order_reduce_path(:id => order_item) , method: :post, class: "btn btn-danger" do %>
+      <i class="glyphicon glyphicon-minus" ></i>
+    <% end %>
+<!-- them san pham , tang san pham len 1 -->
+    <%=link_to order_item_add_path(:id => order_item) , method: :post , class: "btn btn-success" do %>
+      <i class="glyphicon glyphicon-plus" ></i>
+    <% end %>
+  </td>
+    <td class="text-right"><%= product.price %>
+    $</td>
+  <td class="text-right">
+<!-- Remove -->
+    <%=link_to order_item_path(order_item) ,method: :delete ,class: "btn btn-danger", data: { confirm: 'Are you sure?' } do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+</td>
+</tr>

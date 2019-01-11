@@ -30,7 +30,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
   views:
     layouts:
       application:
@@ -43,12 +42,38 @@ en:
         password: "Password"
         password_confirmation: "Confirmation"
   controller:
+    products:
+      products_info: "Product was successfully destroyed."
+      products_info1: "Product was successfully updated."
+      products_create: "Product was successfully created"
+    orders:
+      orders_info: "order was succesfully destroyed."
+      orders_info1: "you cart is empty !!!"
+    order_items:
+      order_items_info: "Error adding product to basket!"
     users_controller:
       users_controller_info: "Welcome to the Sample App!"
       error_messages: "the cannot find user"
     sessions_controller:
       session_danger: "Invalid email/password combination"
+    application:
+      application_info: "please log in."
   layouts:
+    reviews:
+      reviews_customer: "Customer Reviews"
+      reviews_woman: "Woman Clothes"
+      reviews_info: "I am buying clothes very often , i need a place with big variety of them . I found it here :)"
+      reviews_raiting: "My rating: "
+      reviews_info3: "Definitely i recommend this shop!"
+      reviews_rannynm: "Rannynm"
+      reviews_indonesia: "Indonesia"
+      reviews_ana: "Anan"
+      reviews_ac: "Ella Mentree"
+      reviews_unnit: "United States"
+      reviews_toy: "Toys"
+      reviews_info1: "from Glasgow, Scotland"
+      reviews_trave: "Travel Accessories"
+      reviews_info2: "I am a traveling guy , so i contacted with Dope Shop company for some high quality stuff . And guess what , they where fast and helpful . Definitely i am gonna shop from here again."
     footer:
       announce_footer_html: "The %{tutorial} by %{book}"
       tutorial_link: "http://www.railstutorial.org"
@@ -56,26 +81,51 @@ en:
       book_link: "http://www.michaelhartl.com"
       book_link_detail: "Michael Hartl"
       footer_about: "About"
+      footer_account: "My Account"
+      footer_order: "Order"
+      footer_cart: "Carts"
+      footer_profile: "Profile"
+      footer_users: "Users"
+      footer_man: "Men"
+      footer_women: "Women"
+      footer_boy: "Boy"
+      footer_girl: "Girl"
+      footer_pay: "Payment Methods"
+      footer_icon: ">GOXR3PLUS Studio"
+      footer_icon1: "©"
+      footer_icon2: "."
+      footer_pay1: "You can pay using..."
+      footer_info: "With 5 years market experience we are here to give you the best products on the best price ."
       footer_Contact: "Contact"
       footer_link_detail: "News"
       footer_link: "http://news.railstutorial.org"
     header:
       heard_info_heard: "SHOP"
+      heard_info_face: "https://www.facebook.com/"
+      heard_info_tw: "http://www.goxr3plus.co.nf"
       heard_info_home: "Home"
       heard_info_help: "Help"
       heard_info_login: "Log in"
       heard_info_user: "Users"
-      heard_info_Profile: "Profile"
+      heard_info_mycart: "My Cart"
+      heard_info_order: "My Order"
+      heard_info_Profile: "View Profile"
+      heard_info_changepass: "Change Password"
       heard_info_Settings: "Settings"
       heard_info_logout: "Log out"
       heard_info_Account: "Account"
+      heard_info_cahngephoto: "Change photo"
   application_info: "Ruby on Rails Tutorial Sample App"
   pages:
     home:
+      heard2: "Start exploring"
+      heard1: "Best products on best prices !"
       heard: "Welcome to the Shop"
       announce_home_html: "This is the home page for the shop application. %{tutorial} building shop on Rails "
       home_link: "https://shopee.vn/"
       home_info_3: "Sign up now!"
+      home_login: "Log in"
+      home_logout: "Log out"
     about:
       about_title: "About"
       about_head: "About"
@@ -112,11 +162,90 @@ en:
     session:
         email: "Email"
         password: "Password"
+  orders:
+    edit:
+      edit_update: "Update Orders"
+      edit_total: "Total price:"
+      edit_show: "Show/Hide Items"
+    index:
+      index_all: "USER --- All Orders"
+      index_f: "Found => ["
+    new:
+      new_info: "Place Order"
+    order_2:
+      order_2_id: "Order ID"
+      order_2_user_id: ", User ID"
+      order_2_name: "Name:"
+      order_2_email: "Email:"
+    order:
+      order_2_name: "Name:"
+      order_2_email: "Email:"
+      order_2_id: "Order ID"
+      order_2_user_id: ", User ID"
+      order_pay: "Pay_method:"
+      order_description: "Description"
+      order_total: "Total price:"
+      order_show : "Show Items"
+
+
+
+  products:
+    product:
+      product_name: "Name :"
+      product_des: "Description :"
+      product_price: "Price :"
+      product_add: "Add to Basket"
+      product_info: "$"
+      product_quantity: "Quantity"
+      product_emove: "Remove Item"
+      product_rice: "| Total Price:"
+      product_edit: "Edit"
+      product_destroy: "Destroy"
+      product_info2: "Are you sure?"
+    new:
+      new_info: "New Product"
+      new_info1: "Back"
+    index:
+      index_info: "Products"
+    edit:
+      edit_info: "Show"
+      edit_info1: "Back"
   shared:
+    order_product:
+      product_name: "Name :"
+      product_descri: "Description :"
+      product_price: "Price :"
+    product:
+      product_name: "Name :"
+      product_descri: "Description :"
+      product_price: "Price :"
+      product_edit: "Edit"
+      product_des: "Destroy"
+    products:
+      products_info: "There are no products containing the term(s) => ["
+      products_info1: "] ."
+      products_all: "All Products"
+      products_create: "Create New Product (Admin)"
     form: "The form contains %{error_list}"
     error:
       one: "1 error"
       other: "%{count} errors"
+    cart:
+      cart_mycart: "My Cart"
+      cart_product: "Product"
+      cart_valibale: "Available"
+      cart_quantity: "Quantity"
+      cart_price: "Price"
+      cart_sub: "Sub-Total"
+      cart_pring: "Shipping"
+      cart_total: "Total"
+      cart_pree: "free"
+    cart2:
+      cart2_total: "Total price:"
+      cart2_quantity: "Quantity:"
+      cart2_total1: "| Total Price:"
+    cart_order_item:
+      cart_order_item_store: "In stock"
   users:
     new:
       new_info_title: "Sign up"
@@ -131,3 +260,4 @@ en:
       title: "Log in"
       sign_up_html: "New user? %{href}"
   sign_up_now: "Sign up now!"
+

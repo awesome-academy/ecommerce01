@@ -48,7 +48,7 @@ GEM
       io-like (~> 0.3.0)
     arel (9.0.0)
     ast (2.4.0)
-    autoprefixer-rails (9.4.3)
+    autoprefixer-rails (9.4.4)
       execjs
     bcrypt (3.1.12)
     bindex (0.5.0)
@@ -80,10 +80,10 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.4)
-    config (1.7.0)
+    config (1.7.1)
       activesupport (>= 3.0)
       deep_merge (~> 1.2.1)
-      dry-validation (>= 0.10.4)
+      dry-validation (>= 0.12.2)
     crass (1.0.4)
     deep_merge (1.2.1)
     dry-configurable (0.7.0)
@@ -118,7 +118,7 @@ GEM
     ffi (1.9.25)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    i18n (1.3.0)
+    i18n (1.5.1)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
     jbuilder (2.8.0)
@@ -149,8 +149,10 @@ GEM
     msgpack (1.2.4)
     multi_json (1.13.1)
     mysql2 (0.5.2)
+    nicescroll-rails (3.5.4.1)
+      railties (>= 3.1)
     nio4r (2.3.1)
-    nokogiri (1.9.1)
+    nokogiri (1.10.0)
       mini_portile2 (~> 2.4.0)
     parallel (1.12.1)
     parser (2.5.3.0)
@@ -206,7 +208,7 @@ GEM
     ruby-progressbar (1.10.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.2)
-    sass (3.7.2)
+    sass (3.7.3)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -243,7 +245,7 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2018.7)
+    tzinfo-data (1.2018.9)
       tzinfo (>= 1.0.0)
     uglifier (4.1.20)
       execjs (>= 0.3.0, < 3)
@@ -256,6 +258,9 @@ GEM
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
+    will_paginate (3.1.6)
+    will_paginate-bootstrap (1.0.1)
+      will_paginate (>= 3.0.3)
     xpath (3.2.0)
       nokogiri (~> 1.8)
 
@@ -276,6 +281,7 @@ DEPENDENCIES
   jquery-ui-rails
   listen (>= 3.0.5, < 3.2)
   mysql2
+  nicescroll-rails (~> 3.5, >= 3.5.4.1)
   pg
   puma (~> 3.11)
   rails (~> 5.2.1)
@@ -289,9 +295,10 @@ DEPENDENCIES
   tzinfo-data (~> 1.2017, >= 1.2017.2)
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
+  will_paginate-bootstrap
 
 RUBY VERSION
    ruby 2.5.3p105
 
 BUNDLED WITH
-   1.16.6
+   1.17.3

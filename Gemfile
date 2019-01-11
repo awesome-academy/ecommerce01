@@ -18,6 +18,10 @@ gem "rubocop", "~> 0.54.0", require: false
 gem "sass-rails", "~> 5.0"
 gem "turbolinks", "~> 5"
 gem "uglifier", ">= 1.3.0"
+
+gem "will_paginate-bootstrap"
+
+gem "nicescroll-rails", "~> 3.5", ">= 3.5.4.1"
 group :development, :test do
   gem "byebug", "~> 9.0", ">= 9.0.5"
 end

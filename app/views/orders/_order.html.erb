@@ -1,0 +1,62 @@
+<h3>
+  <%= link_to ( gravatar_for User.find_by(id:order.user_id), size: 100 ) , User.find_by(id:order.user_id) %>
+  <%=  t("orders.order.order_2_id") %>
+  <%= order.id %>
+  <%=  t("orders.order.order_2_user_id") %>
+  <%= order.user_id %></h3>
+<p>
+  <strong>><%=  t("orders.order.order_2_name") %></strong>
+  <%= User.find_by(id:order.user_id).name %>
+  <strong><%=  t("orders.order.order_2_email") %></strong>
+  <%= User.find_by(id:order.user_id).email %>
+  <strong><%=  t("orders.order.order_pay") %></strong>
+  <%= order.pay_method %></p>
+<p>
+  <strong><%=  t("orders.order.order_description") %></strong>
+  <div class="well well-sm"><%= order.description %></div>
+</p>
+<p>
+  <h3><%=  t("orders.order.order_total") %>
+    <%= number_to_currency(order.total_bill) %>
+  </h3>
+</p>
+
+<button type="button" class="btn btn-success" data-toggle="collapse" data-target="#<%= order.id %>">S<%=  t("orders.order.order_show") %></button>
+<div id="<%= order.id %>" class="collapse">
+  <ul class="users">
+    <% order.order_items.each do |item| %>
+      <%= item.quantity %>
+      x
+      <%= render 'shared/order_product' , product:item.product%>
+    <% end %>
+    <br/>
+  </ul>
+</div>
+</div>
+</button>
+<div id="<%= order.id %>" class="collapse">
+  <ul class="users">
+    <% order.order_items.each do |item| %>
+      <%= item.quantity %>
+      x
+      <%= render 'shared/order_product' , product:item.product%>
+    <% end %>
+    <br/>
+  </ul>
+</div>
+
+<!-- Only Admin is allowed to modify Orders -->
+<% if logged_in? %>
+  <%= link_to edit_order_path(order) do %>
+  <i class="glyphicon glyphicon-pencil" id = "glyphicon"></i>
+  Edit
+<% end %>
+or
+<!-- Basket -->
+<%= link_to order, method: :delete, data: { confirm: 'Are you sure?' } do %>
+<i class="glyphicon glyphicon-fire" id = "glyphicon-fire"></i>
+Destroy
+<% end %>
+<% end %>
+
+<hr/>

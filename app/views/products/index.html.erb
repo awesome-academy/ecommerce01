@@ -1,0 +1,11 @@
+<% provide(:title,("Products")) %>
+
+  <p id="notice"><%= notice %></p>
+
+  <div class="center jumbotron">
+
+      <strong><%= t("products.index.index_info") %> ( <%= @products.count %> )</strong>
+
+  </div>
+
+  <%= render 'shared/products' %>

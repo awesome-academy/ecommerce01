@@ -1,0 +1,19 @@
+<div class="center jumbotron">
+  <p>
+    <h3><%= t("shared.cart2.cart_total") %>
+      <%= number_to_currency(@cart.sub_total) %></h3>
+  </p>
+  <ul class="users">
+    <% @cart.order_items.each do |order_item| %>
+      <%= render "shared/product" , :product => order_item.product %>
+      <li><%= t("shared.cart2.cart2_quantity") %>
+        <%= order_item.quantity %>
+        <%= t("shared.cart2.cart2_total1") %>
+        <%= number_to_currency(order_item.total_price) %>
+        <!-- See lineItem section below for explanation of line_item links -->
+        <hr class="style18">
+      </li>
+      <% end %>
+  </ul>
+
+</div>

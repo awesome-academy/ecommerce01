@@ -1,0 +1,23 @@
+<li>
+  <%= link_to product do%>
+  <% if product.picture? %>
+    <%= image_tag product.picture.pathmap , size:"64x64" %>
+  <% else %>
+    <%= image_tag "no_image.png", size:"64x64" %>
+  <%end%>
+  <%end %>
+
+  <strong>
+    <%= t("shared.order_product.product_name") %>
+  </strong>
+  <%= product.name %>
+  <strong>
+    <%= t("shared.order_product.product_descri") %>
+  </strong>
+  <%= product.description %>
+  <strong>
+    <%= t("shared.order_product.product_price") %>
+  </strong>
+  <%= product.price %> $
+
+</li>

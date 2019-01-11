@@ -2,8 +2,9 @@ class Product < ApplicationRecord
   belongs_to :categorie
   has_many :order_items, dependent: :destroy
   has_many :comment_raitings, dependent: :destroy
-  validates :name, presence: true,
-    length: {maximum: Setting.product.names.max_length}
-  validates :description, length: {maximum:
-    Setting.product.description.max_length}
+  has_many :orders, through: :order_items
+
+  def self.search search
+    where("name LIKE ?", "%#{search}%")
+  end
 end

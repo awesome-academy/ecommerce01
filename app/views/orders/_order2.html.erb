@@ -1,0 +1,14 @@
+<h3>
+  <%= link_to ( gravatar_for  User.find_by(id:order.user_id), size: 100 ) ,  User.find_by(id:order.user_id) %>
+  <%=  t("orders.order_2.order_2_id") %>
+  <%= order.id %>
+  <%=  t("orders.order_2.order_2_user_id") %>
+  <%= order.user_id %>
+</h3>
+<p>
+  <strong><%=  t("orders.order_2.order_2_name") %></strong>
+  <%= User.find_by(id:order.user_id).name %>
+
+  ,
+  <strong><%=  t("orders.order_2.order_2_email") %></strong>
+  <%= User.find_by(id:order.user_id).email %>

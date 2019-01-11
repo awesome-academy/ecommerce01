@@ -1,11 +1,93 @@
-<footer class="footer">
-  <small>
-    <%= t(".announce_footer_html", tutorial: link_to(t(".tutorial_link_detail"),
-      t(".tutorial_link")), book: link_to(t(".book_link_detail"), t(".book_link"))) %>
-  </small>
-  <nav>
-    <ul>
-      <li><%= link_to(t(".footer_link_detail"), t(".footer_link")) %></li>
-    </ul>
-  </nav>
-</footer>
+<nav class="navbar  navbar-inverse">
+  <div class="container-fluid">
+    <!-- FOOTER START================== -->
+    <footer class="footer">
+      <div class="container">
+
+        <%= render "/layouts/reviews" %>
+
+        <hr class="style15">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <h4 class="title"><%= t("layouts.footer.footer_about") %></h4>
+            <%= t("layouts.footer.footer_info") %>
+            <!-- <ul class="social-icon"> <a href="#" class="social"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="#" class="social"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="#" class="social"><i class="fa fa-instagram"
+            aria-hidden="true"></i></a> <a href="#" class="social"><i class="fa fa-youtube-play" aria-hidden="true"></i></a> <a href="#" class="social"><i class="fa fa-google" aria-hidden="true"></i></a> <a href="#" class="social"><i class="fa fa-dribbble"
+            aria-hidden="true"></i></a> </ul> -->
+          </div>
+          <div class="col-sm-3">
+            <h4 class="title"><%= t("layouts.footer.footer_account") %></h4>
+            <span class="acount-icon">
+              <%= link_to orders_path do %>
+                <i class="fa fa-heart" aria-hidden="true"></i>
+                <%= t("layouts.footer.footer_order") %>
+              <% end %>
+              <%= link_to cart_path(@current_cart) do %>
+                <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                <%= t("layouts.footer.footer_cart") %>
+              <% end %>
+              <%= link_to current_user do %>
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <%= t("layouts.footer.footer_profile") %>
+              <% end %>
+              <%= link_to users_path do %>
+                <i class="fa fa-users" aria-hidden="true"></i>
+                <%= t("layouts.footer.footer_users") %>
+              <% end %>
+            </span>
+            </div>
+            <div class="col-sm-3">
+              <h4 class="title">Category</h4>
+              <div class="category">
+                <a href="#"><%= t("layouts.footer.footer_man") %></a>
+                <a href="#"><%= t("layouts.footer.footer_women") %></a>
+                <a href="#"><%= t("layouts.footer.footer_boy") %></a>
+                <a href="#"><%= t("layouts.footer.footer_girl") %></a>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <h4 class="title"><%= t("layouts.footer.footer_pay") %></h4>
+              <p><%= t("layouts.footer.footer_pay1") %></p>
+              <ul class="payment">
+                <li>
+                  <a href="#">
+                    <i class="fa fa-cc-amex" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fa fa-credit-card" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fa fa-paypal" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fa fa-cc-visa" aria-hidden="true"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+        </div>
+        <hr class="style18">
+
+        <div class="row text-center">
+          <%= t("layouts.footer.footer_icon1") %>
+          <%= Date.today.year %>
+          <%= t("layouts.footer.footer_icon2") %>
+          <a href="http://www.goxr3plus.co.nf" target="_blank"><%= t("layouts.footer.footer_icon") %>
+          </a>
+        </div>
+      </div>
+
+    </footer>
+
+  </div>
+</div>
+
+</div>
+</nav>
